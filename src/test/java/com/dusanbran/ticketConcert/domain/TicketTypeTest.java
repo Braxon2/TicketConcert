@@ -64,8 +64,11 @@ class TicketTypeTest {
     void setTickets() {
         List<Ticket> tickets = new ArrayList<>();
         Ticket t = new Ticket();
+        Ticket t1 = new Ticket();
         t.setId(1L);
+        t1.setId(2L);
         tickets.add(t);
+        tickets.add(t1);
         ticketType.setTickets(tickets);
         assertEquals(tickets, ticketType.getTickets());
     }
