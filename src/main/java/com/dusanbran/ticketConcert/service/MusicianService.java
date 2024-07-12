@@ -48,9 +48,9 @@ public class MusicianService {
         }
 
         return optionalMusician.get().getConcerts()
-                .stream().
-                map(concertMapper::toConcertDTO).
-                filter(concert -> concert.dateTime().isAfter(LocalDateTime.now()))
+                .stream()
+                .map(concertMapper::toConcertDTO)
+                .filter(concert -> concert.dateTime().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toList());
     }
 }
