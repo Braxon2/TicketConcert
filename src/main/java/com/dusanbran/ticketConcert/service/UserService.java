@@ -27,10 +27,11 @@ public class UserService {
         this.ticketMapper = ticketMapper;
     }
 
-    public User addNewUser(User newUser) throws Exception {
+    public UserDTO addNewUser(User newUser) throws Exception {
         Optional<User> optionalUser = userRepository.findByUsername(newUser.getUsername());
         if(optionalUser.isEmpty()){
-            return userRepository.save(newUser);
+             userRepository.save(newUser);
+            return userMapper.toDto(newUser);
         }
         else throw new Exception("There is a user with that username, please try different username.");
     }
