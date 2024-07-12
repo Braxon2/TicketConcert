@@ -1,7 +1,6 @@
 package com.dusanbran.ticketConcert.service;
 
 import com.dusanbran.ticketConcert.controller.dto.ConcertDTO;
-import com.dusanbran.ticketConcert.controller.dto.MusicianDTO;
 import com.dusanbran.ticketConcert.controller.dto.TicketDTO;
 import com.dusanbran.ticketConcert.controller.dto.TicketTypeDTO;
 import com.dusanbran.ticketConcert.controller.mapper.ConcertMapper;

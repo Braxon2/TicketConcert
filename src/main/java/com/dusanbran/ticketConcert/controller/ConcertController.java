@@ -5,7 +5,6 @@ import com.dusanbran.ticketConcert.controller.dto.TicketDTO;
 import com.dusanbran.ticketConcert.controller.dto.TicketTypeDTO;
 import com.dusanbran.ticketConcert.domain.BuyingTicket;
 import com.dusanbran.ticketConcert.domain.Concert;
-import com.dusanbran.ticketConcert.domain.Ticket;
 import com.dusanbran.ticketConcert.domain.TicketType;
 import com.dusanbran.ticketConcert.service.ConcertService;
 import org.springframework.web.bind.annotation.*;
