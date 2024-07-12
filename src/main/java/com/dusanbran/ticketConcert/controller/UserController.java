@@ -2,8 +2,6 @@ package com.dusanbran.ticketConcert.controller;
 
 import com.dusanbran.ticketConcert.controller.dto.TicketDTO;
 import com.dusanbran.ticketConcert.controller.dto.UserDTO;
-import com.dusanbran.ticketConcert.controller.mapper.UserMapper;
-import com.dusanbran.ticketConcert.domain.Ticket;
 import com.dusanbran.ticketConcert.domain.User;
 import com.dusanbran.ticketConcert.service.UserService;
 import org.springframework.web.bind.annotation.*;
