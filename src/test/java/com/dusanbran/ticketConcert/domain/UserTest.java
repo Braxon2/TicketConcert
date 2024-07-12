@@ -56,7 +56,7 @@ class UserTest {
 
     @Test
     void setTickets() {
-        List<Ticket> tickets = new ArrayList<Ticket>();
+        List<Ticket> tickets = new ArrayList<>();
         tickets.add(new Ticket(LocalDateTime.now()));
         user.setTickets(tickets);
         assertEquals(tickets, user.getTickets());
