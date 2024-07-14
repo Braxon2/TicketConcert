@@ -53,18 +53,13 @@ public class ConcertService {
         this.ticketMapper = ticketMapper;
     }
 
-    public ConcertDTO create(Concert newConcert) throws Exception {
+    public ConcertDTO create(Concert newConcert) {
         Optional<Musician> optionalMusician = musicianRepository.findById(newConcert.getMusician().getId());
 
         Musician musician = musicianRepository.findById((long) newConcert.getMusician().getId()).orElseThrow(() -> new NoSuchElementFoundExceptions("Musician not found with ID: " + newConcert.getMusician().getId()));
 
-//        if(optionalMusician.isEmpty()){
-//            throw new Exception("This musician does not exist!!!");
-//        }
         newConcert.setMusician(musician);
-//
-//        newConcert.setMusician(optionalMusician.get());
-//        Concert concert = concertRepository.findByDateTime(newConcert.getDateTime()).orElseThrow(()-> new ConcertExistException("This concert already exist"));
+
         Optional<Concert> optionalConcert = concertRepository.findByDateTime(newConcert.getDateTime());
         if(optionalConcert.isEmpty()) {
             concertRepository.save(newConcert);
