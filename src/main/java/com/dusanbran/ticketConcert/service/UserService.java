@@ -6,6 +6,7 @@ import com.dusanbran.ticketConcert.controller.mapper.TicketMapper;
 import com.dusanbran.ticketConcert.controller.mapper.UserMapper;
 import com.dusanbran.ticketConcert.domain.User;
 import com.dusanbran.ticketConcert.repository.UserRepository;
+import com.dusanbran.ticketConcert.exceptions.NoSuchElementFoundExceptions;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,5 +53,10 @@ public class UserService {
                 .stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public UserDTO getUserById(Long userId) {
+        User user = userRepository.findById((long) userId).orElseThrow(()->new NoSuchElementFoundExceptions("Not found"));
+        return userMapper.toDto(user);
     }
 }

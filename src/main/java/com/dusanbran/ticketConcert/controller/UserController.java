@@ -37,4 +37,9 @@ public class UserController {
         return userService.getAll();
    }
 
+   @GetMapping("/{user_id}")
+    public UserDTO getUser(@PathVariable Long user_id){
+        return userService.getUserById(user_id);
+   }
+
 }

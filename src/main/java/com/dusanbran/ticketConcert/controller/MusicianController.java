@@ -25,6 +25,11 @@ public class MusicianController {
         return musicianService.create(musician);
     }
 
+    @GetMapping("/{musician_id}")
+    public MusicianDTO getMusicianById(@PathVariable Long musician_id) {
+        return musicianService.getMusician(musician_id);
+    }
+
     @GetMapping
     public List<MusicianDTO> getAll(){
         return musicianService.getAll();
