@@ -8,6 +8,8 @@ import com.dusanbran.ticketConcert.controller.mapper.MusicianMapper;
 import com.dusanbran.ticketConcert.controller.mapper.TicketMapper;
 import com.dusanbran.ticketConcert.controller.mapper.TicketTypeMapper;
 import com.dusanbran.ticketConcert.domain.*;
+import com.dusanbran.ticketConcert.exceptions.ConcertExistException;
+import com.dusanbran.ticketConcert.exceptions.NoSuchElementFoundExceptions;
 import com.dusanbran.ticketConcert.repository.*;
 import org.springframework.stereotype.Service;
 
@@ -54,16 +56,21 @@ public class ConcertService {
     public ConcertDTO create(Concert newConcert) throws Exception {
         Optional<Musician> optionalMusician = musicianRepository.findById(newConcert.getMusician().getId());
 
-        if(optionalMusician.isEmpty()){
-            throw new Exception("This musician does not exist!!!");
-        }
-        newConcert.setMusician(optionalMusician.get());
+        Musician musician = musicianRepository.findById((long) newConcert.getMusician().getId()).orElseThrow(() -> new NoSuchElementFoundExceptions("Musician not found with ID: " + newConcert.getMusician().getId()));
+
+//        if(optionalMusician.isEmpty()){
+//            throw new Exception("This musician does not exist!!!");
+//        }
+        newConcert.setMusician(musician);
+//
+//        newConcert.setMusician(optionalMusician.get());
+//        Concert concert = concertRepository.findByDateTime(newConcert.getDateTime()).orElseThrow(()-> new ConcertExistException("This concert already exist"));
         Optional<Concert> optionalConcert = concertRepository.findByDateTime(newConcert.getDateTime());
         if(optionalConcert.isEmpty()) {
             concertRepository.save(newConcert);
             return concertMapper.toConcertDTO(newConcert);
 
-        }else throw new Exception("You can't have two concerts with same date and time!");
+        }else throw new ConcertExistException("You can't have two concerts with same date and time!");
 
     }
 

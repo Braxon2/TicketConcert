@@ -21,4 +21,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorObject, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ConcertExistException.class)
+    public ResponseEntity<ErrorObject> handleConcertExistException(ConcertExistException ex){
+        ErrorObject errorObject = new ErrorObject();
+
+        errorObject.setMessage(ex.getMessage());
+        errorObject.setTimestamp(new Date());
+        errorObject.setStatusCode(HttpStatus.CONFLICT.value());
+
+        return new ResponseEntity<>(errorObject, HttpStatus.CONFLICT);
+    }
+
 }
